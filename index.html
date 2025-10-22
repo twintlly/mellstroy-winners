@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Победители конкурса Mellstroy.game</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: white;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .header {
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      background: #111;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      position: relative;
+      min-height: 70px;
+      margin: 0;
+    }
+
+    .header-title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 26px;
+      font-weight: bold;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      margin: 0;
+    }
+    .filters button {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .filters button.active {
+      background: #8A2BE2;
+    }
+
+    #map {
+      position: absolute;
+      top: 120px;
+      bottom: 60px;
+      width: 100%;
+      z-index: 10;
+      background: #000;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      height: 70px;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: opacity 0.2s;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.8;
+    }
+
+    .footer-links a:visited,
+    .footer-links a:active,
+    .footer-links a:focus {
+      color: white;
+      outline: none;
+    }
+
+    .footer-copyright {
+      position: absolute;
+      right: 16px;
+      bottom: 6px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      white-space: nowrap;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      background: #222;
+      color: white;
+      padding: 20px;
+      border-radius: 16px;
+      width: 90vw;
+      max-width: 500px;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      text-align: center;
+      line-height: 1.4;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .modal-content h3,
+    .modal-content p {
+      margin: 0;
+      padding: 4px 0 8px 0;
+      font-size: 0.95em;
+    }
+
+    .modal-content h3 {
+      font-size: 1.2em;
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+    #modal-author {
+      margin-top: 8px !important;
+    }
+
+    .modal img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+    .modal video {
+      width: 100%;
+      max-height: 50vh;
+      height: auto;
+      border-radius: 10px;
+      margin: 12px 0;
+      object-fit: cover;
+    }
+
+    #open-calendar-btn {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    #reset-date-btn.active-date {
+      background: #8A2BE2;
+    }
+
+    .close-btn {
+      margin-top: 15px;
+      padding: 8px 20px;
+      background: #8A2BE2;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .edge-arrow {
+      position: absolute;
+      background: rgba(100, 100, 100, 0.6);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      pointer-events: auto;
+      cursor: pointer;
+      z-index: 1002;
+      transition: background 0.2s ease;
+    }
+
+    .edge-arrow:hover {
+      background: rgba(80, 80, 80, 1);
+    }
+
+    @keyframes goldPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+      70% { box-shadow: 0 0 0 12px rgba(255, 215, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+    }
+
+    .gold-marker {
+      animation: goldPulse 2s infinite;
+    }
+
+    .winner-date {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #8A2BE2;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="filters">
+      <button class="filter-btn active" data-type="all">Все</button>
+      <button class="filter-btn" data-type="Квартира">🏠 Квартиры</button>
+      <button class="filter-btn" data-type="Деньги">💰 Деньги</button>
+
+      <button id="reset-date-btn" class="filter-btn active-date">Все дни</button>
+
+      <input type="date" id="date-picker" style="display: none;" />
+      <button id="open-calendar-btn" class="filter-btn">Выбрать дату</button>
+    </div>
+    <div class="header-title">Победители конкурса MELLSTROY.GAME</div>
+  </div>
+
+  <div id="map"></div>
+
+  <div class="footer">
+    <div class="footer-links">
+      <a href="https://www.instagram.com/mellstroy?igsh=NXZud2h4ZWc4bXZz" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@glavstroy?_t=ZN-90jKE08qCQw&_r=1" target="_blank">TikTok</a>
+      <a href="https://kick.com/mellstroy987" target="_blank">Kick</a>
+      <a href="https://t.me/tellstroy" target="_blank">Telegram</a>
+      <a href="https://www.tiktok.com/@tt_twintlly?_t=ZN-90jKNS4LA8c&_r=1" target="_blank">TikTok Автора</a>
+    </div>
+    <div class="footer-copyright">
+      © 2025 twintlly. Все права защищены.
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="winner-date" id="modal-date"></div>
+      <img id="modal-avatar" src="" alt="Avatar" />
+      <h3 id="modal-name"></h3>
+      <p id="modal-description"></p>
+      <p><strong id="modal-prize"></strong></p>
+      <p id="modal-author" style="color: gold; font-weight: bold; margin: 8px 0;"></p>
+      <video id="modal-video" controls></video>
+      <a id="modal-video-link" href="" target="_blank" style="display: block; margin: 8px 0; color: #8A2BE2;">Смотреть на TikTok</a>
+      <button class="close-btn" id="close-modal">Закрыть</button>
+    </div>
+  </div> 
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    const map = L.map('map', {
+      worldCopyJump: false,
+      noWrap: true,
+
+      maxBounds: L.latLngBounds(
+        L.latLng(-85, -180),
+        L.latLng(85, 180)
+      ),
+
+      bounceAtZoomLimits: false,
+      maxBoundsViscosity: 1.0,
+
+      minZoom: 3,
+      maxZoom: 18
+    }).setView([20, 0], 3)
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      noWrap: true,
+      minZoom: 3
+    }).addTo(map);
+
+    let markers = [];
+    let winners = [];
+    let currentPrizeFilter = 'all';
+    let currentDateFilter = 'all';
+
+    fetch('winners.json')
+      .then(response => response.json())
+      .then(data => {
+        winners = data;
+        renderMarkers();
+        map.on('moveend zoomend', updateArrowHints);
+        setTimeout(updateArrowHints, 1000);
+      });
+
+    function updateArrowHints() {
+      const container = document.getElementById('arrow-hints');
+      container.innerHTML = '';
+
+      const mapBounds = map.getBounds();
+      const visibleWinners = winners.filter(w => mapBounds.contains([w.lat, w.lng]));
+      const hiddenWinners = winners.filter(w => !mapBounds.contains([w.lat, w.lng]));
+
+      if (hiddenWinners.length === 0) return;
+
+      let leftCandidates = [], rightCandidates = [], topCandidates = [], bottomCandidates = [];
+
+      hiddenWinners.forEach(w => {
+        if (w.lng < mapBounds.getWest()) leftCandidates.push(w);
+        if (w.lng > mapBounds.getEast()) rightCandidates.push(w);
+        if (w.lat > mapBounds.getNorth()) topCandidates.push(w);
+        if (w.lat < mapBounds.getSouth()) bottomCandidates.push(w);
+      });
+
+      const offset = 15;
+
+      function getClosest(winnerList, getCoord) {
+        const current = getCoord(map.getCenter());
+        return winnerList.reduce((prev, curr) =>
+          Math.abs(getCoord(L.latLng(curr.lat, curr.lng)) - current) <
+          Math.abs(getCoord(L.latLng(prev.lat, prev.lng)) - current) ? curr : prev
+        );
+      }
+
+      if (leftCandidates.length > 0) {
+        const target = getClosest(leftCandidates, p => p.lng);
+        const el = document.createElement('div');
+        el.className = 'edge-arrow';
+        el.style.left = offset + 'px';
+        el.style.top = '50%';
+        el.style.transform = 'translateY(-50%)';
+        el.innerText = '←';
+        el.onclick = () => map.setView([target.lat, target.lng], map.getZoom());
+        container.appendChild(el);
+      }
+
+      if (rightCandidates.length > 0) {
+        const target = getClosest(rightCandidates, p => p.lng);
+        const el = document.createElement('div');
+        el.className = 'edge-arrow';
+        el.style.right = offset + 'px';
+        el.style.top = '50%';
+        el.style.transform = 'translateY(-50%)';
+        el.innerText = '→';
+        el.onclick = () => map.setView([target.lat, target.lng], map.getZoom());
+        container.appendChild(el);
+      }
+
+      if (topCandidates.length > 0) {
+        const target = getClosest(topCandidates, p => p.lat);
+        const el = document.createElement('div');
+        el.className = 'edge-arrow';
+        el.style.top = '85px';
+        el.style.left = '50%';
+        el.style.transform = 'translateX(-50%)';
+        el.innerText = '↑';
+        el.onclick = () => map.setView([target.lat, target.lng], map.getZoom());
+        container.appendChild(el);
+      }
+
+      if (bottomCandidates.length > 0) {
+        const target = getClosest(bottomCandidates, p => p.lat);
+        const el = document.createElement('div');
+        el.className = 'edge-arrow';
+        el.style.bottom = '70px';
+        el.style.left = '50%';
+        el.style.transform = 'translateX(-50%)';
+        el.innerText = '↓';
+        el.onclick = () => map.setView([target.lat, target.lng], map.getZoom());
+        container.appendChild(el);
+      }
+    }
+    
+    function renderMarkers() {
+      markers.forEach(marker => map.removeLayer(marker));
+      markers = [];
+
+      let filtered = winners;
+
+      if (currentPrizeFilter !== 'all') {
+        filtered = filtered.filter(w => w.prizeType === currentPrizeFilter);
+      }
+
+      if (currentDateFilter !== 'all') {
+        filtered = filtered.filter(w => w.date === currentDateFilter);
+      }
+
+      filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      filtered.forEach((winner, index) => {
+        setTimeout(() => {
+          const marker = L.marker([winner.lat, winner.lng], {
+            icon: L.divIcon({
+              className: winner.isAuthor ? 'gold-marker' : 'avatar-marker',
+              html: `<img src="${winner.avatar}" style="
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: ${winner.isAuthor ? '2px solid gold' : '2px solid #8A2BE2'};
+                box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+              ">`,
+              iconSize: [45, 45],
+              iconAnchor: [22.5, 45]
+            })
+          }).addTo(map);
+
+          marker.on('click', () => openModal(winner));
+          markers.push(marker);
+        }, index * 200);
+      });
+    }
+
+    function openModal(winner) {
+      document.getElementById('modal-date').innerText = winner.date;
+      document.getElementById('modal-name').innerText = winner.name;
+      document.getElementById('modal-avatar').src = winner.avatar;
+      document.getElementById('modal-description').innerText = winner.description;
+      document.getElementById('modal-prize').innerText = winner.prizeType;
+
+      const authorText = document.getElementById('modal-author');
+      if (winner.isAuthor) {
+        authorText.innerText = 'Автор карты. Победитель 19.10.2025';
+      } else {
+        authorText.innerText = '';
+      }
+
+      const video = document.getElementById('modal-video');
+      video.src = winner.videoUrl;
+      video.load();
+
+      document.getElementById('modal-video-link').href = winner.tiktok;
+
+      document.getElementById('modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('close-modal').onclick = closeModal;
+    document.getElementById('modal').onclick = (e) => {
+      if (e.target === document.getElementById('modal')) closeModal();
+    };
+
+    function closeModal() {
+      const video = document.getElementById('modal-video');
+      video.pause();
+      video.currentTime = 0;
+
+      document.getElementById('modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    document.querySelectorAll('.filter-btn[data-type]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn[data-type]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPrizeFilter = btn.dataset.type;
+        renderMarkers();
+      });
+    });
+
+    document.getElementById('reset-date-btn').addEventListener('click', () => {
+      document.getElementById('reset-date-btn').classList.add('active-date');
+      document.getElementById('open-calendar-btn').classList.remove('active-date');
+      currentDateFilter = 'all';
+      document.getElementById('open-calendar-btn').textContent = 'Выбрать дату';
+      renderMarkers();
+    });
+
+    document.getElementById('open-calendar-btn').addEventListener('click', () => {
+      document.getElementById('date-picker').showPicker();
+    });
+
+    document.getElementById('date-picker').addEventListener('change', (e) => {
+      const selectedDate = e.target.value;
+
+      if (selectedDate) {
+        document.getElementById('reset-date-btn').classList.remove('active-date');
+        document.getElementById('open-calendar-btn').classList.add('active-date');
+
+        const formatted = new Date(selectedDate).toLocaleDateString('ru-RU', {
+          day: '2-digit',
+          month: '2-digit'
+        });
+        document.getElementById('open-calendar-btn').textContent = formatted;
+
+        currentDateFilter = selectedDate;
+        renderMarkers();
+      }
+    });
+  </script>
+  <div id="arrow-hints" style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+  "></div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+[
+  {
+    "id": 1,
+    "name": "tele_stoy",
+    "date": "2025-10-17",
+    "lat": 62.0355,
+    "lng": 129.6750,
+    "avatar": "avatars/1.jpg",
+    "description": "Самый залайканный комментарий под видео",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvkw5Mh/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/1-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 2,
+    "name": "Dashaiyulskaya",
+    "date": "2025-10-18",
+    "lat": 52.7558,
+    "lng": 37.6176,
+    "avatar": "avatars/2.jpg",
+    "description": "Нарисовала портрет",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvkNMMX/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/2-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 3,
+    "name": "KORTI",
+    "date": "2025-10-18",
+    "lat": 59.9343,
+    "lng": 30.3351,
+    "avatar": "avatars/3.jpg",
+    "description": "Записала видео с ребенком",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvksEbL/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/3-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 4,
+    "name": "нзлд",
+    "date": "2025-10-18",
+    "lat": 56.8519,
+    "lng": 53.2057,
+    "avatar": "avatars/4.jpg",
+    "description": "Пробежал петлю в форме логотипа Mellstroy.game",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvkxLaf/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/3-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 5,
+    "name": "суета",
+    "date": "2025-10-18",
+    "lat": 55.7635,
+    "lng": 40.6065,
+    "avatar": "avatars/5.jpg",
+    "description": "В ТЦ крикнул «Mellstroy подари квартиру»",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://www.tiktok.com/@denisdav?_t=ZN-90jU8rxZYpz&_r=1",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/5-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 6,
+    "name": "klimkeef_life",
+    "date": "2025-10-18",
+    "lat": 54.7348,
+    "lng": 55.9578,
+    "avatar": "avatars/6.jpg",
+    "description": "Записали видео «Тот самый фанат Меллстроя»",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvkC8pF/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/6-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 7,
+    "name": "Анатолий Белкин",
+    "date": "2025-10-18",
+    "lat": 43.5905,
+    "lng": 39.7257,
+    "avatar": "avatars/7.jpg",
+    "description": "Мужчина без рук",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvk9vWn/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/7-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 8,
+    "name": "Даша Корейка",
+    "date": "2025-10-18",
+    "lat": 55.7586,
+    "lng": 37.6112,
+    "avatar": "avatars/8.jpg",
+    "description": "Набила татуировку с названием проекта Mellstroy.game",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvkynmq/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/8-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 9,
+    "name": "РАБОТЯГА С ЗАВОДА",
+    "date": "2025-10-18",
+    "lat": 58.0105,
+    "lng": 56.2351,
+    "avatar": "avatars/9.jpg",
+    "description": "Набил татуировку с названием проекта Mellstroy.game",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvkQPLy/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/9-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 10,
+    "name": "ЗАХАР",
+    "date": "2025-10-19",
+    "lat": 34.0522,
+    "lng": -118.2437,
+    "avatar": "avatars/10.jpg",
+    "description": "Снял видео пародию на казино",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvkQPLy/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/10-win.mp4"
+  }
+  ,
+  
+  {
+    "id": 11,
+    "name": "MIKE",
+    "date": "2025-10-19",
+    "lat": 40.7574,
+    "lng": -73.9860,
+    "avatar": "avatars/11.jpg",
+    "description": "Разместил Mellstroy на билборде на Тайм Сквер",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvrXGoU/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/11-win.MP4"
+  }
+  ,
+  
+  {
+    "id": 12,
+    "name": "OMG",
+    "date": "2025-10-19",
+    "lat": 55.0084,
+    "lng": 82.9357,
+    "avatar": "avatars/12.jpg",
+    "description": "Собрали портрет Mellstroy из LEGO",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvBsVJk/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/12-win.mp4"
+  },
+  {
+    "id": 13,
+    "name": "serg_sinitsky",
+    "date": "2025-10-20",
+    "lat": 56.0184,
+    "lng": 92.8672,
+    "avatar": "avatars/13.jpg",
+    "description": "Удалил свои зубы и поставил титановые с гравировкой портрета и никнейма Mellstroy",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvSyv6K/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/13-win.mp4"
+  },
+  {
+    "id": 14,
+    "name": "Влад Ждонец",
+    "date": "2025-10-20",
+    "lat": 56.8519,
+    "lng": 60.6122,
+    "avatar": "avatars/14.jpg",
+    "description": "Нарисовал портрет Mellstroy",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdvSSxMr/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/14-win.mp4"
+  }
+]
