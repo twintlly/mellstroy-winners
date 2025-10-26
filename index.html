@@ -65,6 +65,7 @@
       flex-direction: column;
       align-items: center;
       gap: 12px;
+      width: 100%;
     }
     .header-title {
       font-size: clamp(24px, 6vw, 36px);
@@ -107,7 +108,11 @@
       border-color: #8A2BE2;
     }
     #date-picker {
-      position: absolute;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3000;
       opacity: 0;
       pointer-events: none;
       width: 1px;
@@ -116,10 +121,11 @@
     .header-stats-pc {
       position: absolute;
       top: 12px;
-      left: 16px;
-      right: 16px;
-      display: flex;
+      left: 0;
+      right: 0;
+      display: none;
       justify-content: space-between;
+      padding: 0 24px;
       font-size: clamp(24px, 5.8vw, 34px);
       font-weight: bold;
       background: linear-gradient(to right, #ffaddf, #ffffff);
@@ -358,12 +364,12 @@
     }
     @media (min-width: 769px) {
       .header {
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         padding: 0 24px;
         min-height: 110px;
-        gap: 0;
+        gap: 6px;
       }
       .header-stats-mobile { display: none !important; }
       .header-center { gap: 12px; }
@@ -392,13 +398,11 @@
   <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0;">
     Победители конкурса Mellstroy с 17 октября 2025 года. Кто выиграл квартиру у Mellstroy? Интерактивная карта всех победителей конкурса Mellstroy.game. Автор проекта — twintlly. Официальный архив победителей: квартиры, деньги, призы. Mellstroy раздаёт квартиры каждый день — смотри, кто победил сегодня.
   </div>
-
   <div class="header">
     <div class="header-stats-mobile">
       <div class="stat-left" id="total-prize"></div>
       <div class="stat-right" id="winner-count"></div>
     </div>
-
     <div class="header-center">
       <h1 class="header-title">Победители конкурса MELLSTROY.GAME</h1>
       <div class="filters">
@@ -411,15 +415,12 @@
         <button id="show-list-btn">Показать списком</button>
       </div>
     </div>
-
     <div class="header-stats-pc">
       <div class="stat-left" id="total-prize-pc"></div>
       <div class="stat-right" id="winner-count-pc"></div>
     </div>
   </div>
-
   <div id="map"></div>
-
   <div class="footer">
     <div class="footer-links">
       <a href="https://www.instagram.com/mellstroy?igsh=NXZud2h4ZWc4bXZz" target="_blank">Instagram</a>
@@ -436,7 +437,6 @@
       © 2025 twintlly. Все права защищены.
     </div>
   </div>
-
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <h3>Список победителей</h3>
@@ -444,7 +444,6 @@
     </div>
     <div id="winner-list"></div>
   </div>
-
   <div class="modal" id="modal">
     <div class="modal-content">
       <div class="winner-date" id="modal-date"></div>
@@ -458,7 +457,6 @@
       <button class="close-btn" id="close-modal">Закрыть</button>
     </div>
   </div>
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const map = L.map('map', {
@@ -471,18 +469,15 @@
       minZoom: 3,
       maxZoom: 18
     }).setView([42.5, 12.5], 5);
-
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
       noWrap: true,
       minZoom: 3
     }).addTo(map);
-
     let markers = [];
     let winners = [];
     let currentPrizeFilter = 'all';
     let currentDateFilter = 'all';
-
     function updateStats() {
       let totalPrize = 0;
       let winnerCount = 0;
@@ -495,13 +490,11 @@
       });
       const formattedPrize = new Intl.NumberFormat('ru-RU').format(totalPrize) + ' ₽';
       const count = winnerCount;
-
       document.getElementById('total-prize').innerText = formattedPrize;
       document.getElementById('winner-count').innerText = count;
       document.getElementById('total-prize-pc').innerText = formattedPrize;
       document.getElementById('winner-count-pc').innerText = count;
     }
-
     fetch('winners.json')
       .then(response => response.json())
       .then(data => {
@@ -510,7 +503,6 @@
         map.on('moveend zoomend', updateArrowHints);
         setTimeout(updateArrowHints, 1000);
       });
-
     function updateArrowHints() {
       const container = document.getElementById('arrow-hints');
       if (!container) return;
@@ -518,7 +510,6 @@
       const mapBounds = map.getBounds();
       const hiddenWinners = winners.filter(w => !mapBounds.contains([w.lat, w.lng]));
       if (hiddenWinners.length === 0) return;
-
       let left = [], right = [], top = [], bottom = [];
       hiddenWinners.forEach(w => {
         if (w.lng < mapBounds.getWest()) left.push(w);
@@ -526,7 +517,6 @@
         if (w.lat > mapBounds.getNorth()) top.push(w);
         if (w.lat < mapBounds.getSouth()) bottom.push(w);
       });
-
       const createArrow = (list, text, styles) => {
         if (!list.length) return;
         const target = list.reduce((a, b) => {
@@ -541,13 +531,11 @@
         el.onclick = () => map.setView([target.lat, target.lng], map.getZoom());
         container.appendChild(el);
       };
-
       createArrow(left, '←', { left: '15px', top: '50%', transform: 'translateY(-50%)' });
       createArrow(right, '→', { right: '15px', top: '50%', transform: 'translateY(-50%)' });
-      createArrow(top, '↑', { top: '115px', left: '50%', transform: 'translateX(-50%)' });
+      createArrow(top, '↑', { top: '135px', left: '50%', transform: 'translateX(-50%)' });
       createArrow(bottom, '↓', { bottom: '95px', left: '50%', transform: 'translateX(-50%)' });
     }
-
     function renderMarkers() {
       markers.forEach(marker => map.removeLayer(marker));
       markers = [];
@@ -555,7 +543,6 @@
         (currentPrizeFilter === 'all' || w.prizeType === currentPrizeFilter) &&
         (currentDateFilter === 'all' || w.date === currentDateFilter)
       ).sort((a, b) => new Date(a.date) - new Date(b.date));
-
       filtered.forEach((winner, index) => {
         setTimeout(() => {
           const marker = L.marker([winner.lat, winner.lng], {
@@ -577,7 +564,6 @@
       updateStats();
       renderSidebarList();
     }
-
     function renderSidebarList() {
       const list = document.getElementById('winner-list');
       list.innerHTML = '';
@@ -585,7 +571,6 @@
         (currentPrizeFilter === 'all' || w.prizeType === currentPrizeFilter) &&
         (currentDateFilter === 'all' || w.date === currentDateFilter)
       ).sort((a, b) => new Date(a.date) - new Date(b.date));
-
       filtered.forEach((w, i) => {
         const item = document.createElement('div');
         item.className = 'winner-item';
@@ -601,7 +586,6 @@
         list.appendChild(item);
       });
     }
-
     function openModal(winner) {
       document.getElementById('modal-date').innerText = winner.date;
       document.getElementById('modal-name').innerText = winner.name;
@@ -617,18 +601,15 @@
       document.getElementById('modal').style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
-
     document.getElementById('close-modal').onclick = () => {
       const v = document.getElementById('modal-video');
       v.pause(); v.currentTime = 0;
       document.getElementById('modal').style.display = 'none';
       document.body.style.overflow = 'auto';
     };
-
     document.getElementById('modal').onclick = e => {
       if (e.target === document.getElementById('modal')) document.getElementById('close-modal').click();
     };
-
     const prizeButtons = document.querySelectorAll('.filter-btn[data-type]');
     prizeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -638,13 +619,10 @@
         renderMarkers();
       });
     });
-
     const resetDateBtn = document.getElementById('reset-date-btn');
     const openCalendarBtn = document.getElementById('open-calendar-btn');
     const datePicker = document.getElementById('date-picker');
-
     resetDateBtn.classList.add('active-date');
-
     resetDateBtn.addEventListener('click', () => {
       resetDateBtn.classList.add('active-date');
       openCalendarBtn.classList.remove('active-date');
@@ -652,42 +630,9 @@
       currentDateFilter = 'all';
       renderMarkers();
     });
-
     openCalendarBtn.addEventListener('click', () => {
-      if (typeof datePicker.showPicker === 'function') {
-        datePicker.showPicker();
-      } else {
-        datePicker.style.position = 'fixed';
-        datePicker.style.opacity = '1';
-        datePicker.style.pointerEvents = 'auto';
-        datePicker.style.top = '50%';
-        datePicker.style.left = '50%';
-        datePicker.style.transform = 'translate(-50%, -50%)';
-        datePicker.style.zIndex = '3000';
-        datePicker.style.width = '80%';
-        datePicker.style.maxWidth = '300px';
-        datePicker.style.height = 'auto';
-        datePicker.style.background = '#1a0a2e';
-        datePicker.style.border = '2px solid #8A2BE2';
-        datePicker.style.borderRadius = '8px';
-        datePicker.style.padding = '8px';
-        datePicker.style.fontSize = '16px';
-        datePicker.focus();
-
-        const hide = () => {
-          setTimeout(() => {
-            datePicker.style.position = 'absolute';
-            datePicker.style.opacity = '0';
-            datePicker.style.pointerEvents = 'none';
-            datePicker.style.width = '1px';
-            datePicker.style.height = '1px';
-          }, 200);
-        };
-        datePicker.addEventListener('change', hide);
-        datePicker.addEventListener('blur', hide);
-      }
+      datePicker.click();
     });
-
     datePicker.addEventListener('change', e => {
       const d = e.target.value;
       if (d) {
@@ -699,16 +644,13 @@
         renderMarkers();
       }
     });
-
     document.getElementById('show-list-btn').addEventListener('click', () => {
       document.getElementById('sidebar').classList.toggle('open');
     });
-
     document.getElementById('sidebar-close').addEventListener('click', () => {
       document.getElementById('sidebar').classList.remove('open');
     });
   </script>
-
   <div id="arrow-hints" style="
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 999;
