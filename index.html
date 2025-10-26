@@ -64,8 +64,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
-      width: 100%;
+      gap: 10px;
     }
     .header-title {
       font-size: clamp(24px, 6vw, 36px);
@@ -108,11 +107,7 @@
       border-color: #8A2BE2;
     }
     #date-picker {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3000;
+      position: absolute;
       opacity: 0;
       pointer-events: none;
       width: 1px;
@@ -377,14 +372,14 @@
     }
     @media (max-width: 768px) {
       .header {
-        min-height: 100px;
+        min-height: 90px;
         padding: 0 12px;
-        gap: 4px;
+        gap: 2px;
       }
       .header-stats-mobile { display: flex !important; }
       .header-stats-pc { display: none !important; }
       .header-title {
-        font-size: clamp(20px, 7vw, 30px);
+        font-size: clamp(18px, 6.5vw, 26px);
         white-space: normal;
       }
       .filters button {
@@ -533,8 +528,8 @@
       };
       createArrow(left, '←', { left: '15px', top: '50%', transform: 'translateY(-50%)' });
       createArrow(right, '→', { right: '15px', top: '50%', transform: 'translateY(-50%)' });
-      createArrow(top, '↑', { top: '135px', left: '50%', transform: 'translateX(-50%)' });
-      createArrow(bottom, '↓', { bottom: '95px', left: '50%', transform: 'translateX(-50%)' });
+      createArrow(top, '↑', { top: '115px', left: '50%', transform: 'translateX(-50%)' });
+      createArrow(bottom, '↓', { bottom: '135px', left: '50%', transform: 'translateX(-50%)' });
     }
     function renderMarkers() {
       markers.forEach(marker => map.removeLayer(marker));
@@ -631,7 +626,37 @@
       renderMarkers();
     });
     openCalendarBtn.addEventListener('click', () => {
-      datePicker.click();
+      if (typeof datePicker.showPicker === 'function') {
+        datePicker.showPicker();
+      } else {
+        datePicker.style.position = 'fixed';
+        datePicker.style.opacity = '1';
+        datePicker.style.pointerEvents = 'auto';
+        datePicker.style.top = '50%';
+        datePicker.style.left = '50%';
+        datePicker.style.transform = 'translate(-50%, -50%)';
+        datePicker.style.zIndex = '3000';
+        datePicker.style.width = '80%';
+        datePicker.style.maxWidth = '300px';
+        datePicker.style.height = 'auto';
+        datePicker.style.background = '#1a0a2e';
+        datePicker.style.border = '2px solid #8A2BE2';
+        datePicker.style.borderRadius = '8px';
+        datePicker.style.padding = '8px';
+        datePicker.style.fontSize = '16px';
+        datePicker.focus();
+        const hide = () => {
+          setTimeout(() => {
+            datePicker.style.position = 'absolute';
+            datePicker.style.opacity = '0';
+            datePicker.style.pointerEvents = 'none';
+            datePicker.style.width = '1px';
+            datePicker.style.height = '1px';
+          }, 200);
+        };
+        datePicker.addEventListener('change', hide);
+        datePicker.addEventListener('blur', hide);
+      }
     });
     datePicker.addEventListener('change', e => {
       const d = e.target.value;
