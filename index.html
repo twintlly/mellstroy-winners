@@ -35,8 +35,8 @@
 
     .header {
       background: #1a002a;
-      padding: 0 10px;
-      min-height: 100px; /* ← чуть выше */
+      padding: 0;
+      min-height: 110px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -45,6 +45,7 @@
     }
     
     .header-col {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -52,18 +53,15 @@
     }
     
     .header-title-col {
-      min-width: 0;
-      width: 100%;
-      max-width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 4px;
     }
     
     .header-title {
-      font-size: clamp(24px, 6.5vw, 34px);
+      font-size: clamp(24px, 6vw, 36px);
       font-weight: 800;
       text-align: center;
       background: linear-gradient(to right, #e050b0, #a050ff);
@@ -78,8 +76,6 @@
     
     .stat-left,
     .stat-right {
-      flex: 0 0 auto;
-      width: auto;
       font-size: clamp(24px, 5.8vw, 34px);
       font-weight: bold;
       white-space: nowrap;
@@ -88,7 +84,6 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-      padding: 0 12px;
     }
     
     .stat-right::after {
@@ -101,8 +96,10 @@
     .filters {
       display: flex;
       gap: 6px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
+      padding: 0;
+      margin: 0;
     }
     
     .filters button {
@@ -112,9 +109,10 @@
       padding: 6px 12px;
       border-radius: 20px;
       cursor: pointer;
-      font-size: clamp(12px, 3.5vw, 14px);
+      font-size: clamp(11px, 3.2vw, 14px);
       white-space: nowrap;
       transition: transform 0.2s ease;
+      min-width: auto;
     }
     
     .filters button:hover {
@@ -128,7 +126,7 @@
 
     #map {
       position: absolute;
-      top: calc(110px + 38px);
+      top: 110px;
       bottom: 110px;
       width: 100%;
       z-index: 10;
@@ -186,10 +184,10 @@
 
     .sidebar {
       position: fixed;
-      top: 100px;
+      top: 110px;
       right: 0;
       width: 300px;
-      height: calc(100vh - 100px - 110px);
+      height: calc(100vh - 110px - 110px);
       background: #1a0a2e;
       z-index: 1500;
       box-shadow: -5px 0 20px rgba(0,0,0,0.6);
@@ -386,15 +384,19 @@
     }
 
     @media (max-width: 768px) {
-      .filters {
-        gap: 4px;
+      .header {
+        min-height: 90px;
+      }
+      .header-title {
+        font-size: clamp(20px, 7vw, 30px);
       }
       .filters button {
-        padding: 4px 10px;
-        font-size: 12px;
+        padding: 4px 8px;
+        font-size: 11px;
       }
-      .sidebar {
-        width: 260px;
+      .stat-left,
+      .stat-right {
+        font-size: clamp(20px, 5vw, 30px);
       }
     }
   </style>
@@ -680,6 +682,7 @@
   "></div>
 </body>
 </html>
+
 
 
 
