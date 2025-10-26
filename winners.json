@@ -81,7 +81,7 @@
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvkC8pF/",
     "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/6-win.MP4",
-    "prizeAmount": 1000000
+    "prizeAmount": 500000
   },
   {
     "id": 7,
@@ -249,7 +249,7 @@
     "isAuthor": false,
     "tiktok": "",
     "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/18-win.mp4",
-    "prizeAmount": 1000000
+    "prizeAmount": 1500000
   },
   {
     "id": 19,
@@ -263,7 +263,7 @@
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdcyjU3T/",
     "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/19-win.mp4",
-    "prizeAmount": 1000000
+    "prizeAmount": 1500000
   },
   {
     "id": 20,
@@ -308,5 +308,6 @@
     "prizeAmount": 5000000
   }
 ]
+
 
 
