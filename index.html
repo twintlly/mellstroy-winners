@@ -3,20 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <!-- SEO -->
   <meta name="description" content="Смотри всех победителей вирусного конкурса #MellstroyGame! Кому Меллстрой уже подарил квартиры и миллионы. Полная интерактивная карта, отчёты и видео TikTok участников.">
   <meta name="keywords" content="меллстрой, mellstroy, mellstroygame, конкурс меллстроя, розыгрыш квартир, тикток челлендж, tiktok конкурс, победители mellstroy, mellgift, квартиры от меллстроя, челлендж 2025, tiktok хайп, победители конкурса, tiktok trend, mellstroy apartment challenge">
   <link rel="canonical" href="https://mellstroy-winners.ru/">
-
   <!-- Верификации -->
   <meta name="google-site-verification" content="mJUSSsY6AW1xlZ6NC7QGPlmTCF9OL4dwZsYOIhs6TeI" />
   <meta name="yandex-verification" content="0b77076035bf2931" />
-
   <title>Победители конкурса Mellstroy.game</title>
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
   <style>
     * {
       margin: 0;
@@ -33,47 +28,62 @@
       color: white;
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
     }
-  
     .header {
       background: #1a002a;
-      padding: 8px 10px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      z-index: 100;
+      padding: 0 12px;
       min-height: 110px;
-      box-sizing: border-box;
-    }
-  
-    .header-stats {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       width: 100%;
-      font-size: clamp(16px, 4.5vw, 24px);
+      box-sizing: border-box;
+      position: relative;
+      z-index: 100;
+    }
+    .header-col {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+    }
+    .stat-left-wrapper {
+      justify-content: flex-end;
+      padding-right: 12px;
+    }
+    .stat-right-wrapper {
+      justify-content: flex-start;
+      padding-left: 12px;
+    }
+    .stat-left,
+    .stat-right {
+      font-size: clamp(24px, 5.8vw, 34px);
       font-weight: bold;
       background: linear-gradient(to right, #ffaddf, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
+      text-align: center;
+      line-height: 1.2;
     }
-  
-    .header-stats .stat-right::after {
+    .stat-right::after {
       content: " чел";
-      font-size: 0.7em;
+      font-size: clamp(18px, 4.5vw, 26px);
       color: rgba(255, 255, 255, 0.85);
       margin-left: 4px;
     }
-  
+    .header-title-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      max-width: 100%;
+    }
     .header-title {
-      font-size: clamp(18px, 6vw, 28px);
+      font-size: clamp(24px, 6vw, 36px);
       font-weight: 800;
       text-align: center;
       background: linear-gradient(to right, #e050b0, #a050ff);
@@ -83,30 +93,35 @@
       color: transparent;
       margin: 0;
       line-height: 1.2;
+      white-space: nowrap;
     }
-  
     .filters {
       display: flex;
-      gap: 4px;
+      gap: 6px;
       flex-wrap: wrap;
       justify-content: center;
       width: 100%;
-      margin-top: 4px;
     }
-  
     .filters button {
       background: linear-gradient(to bottom, #4B0082, #800080);
       color: white;
       border: 2px solid #9932CC;
-      padding: 4px 8px;
+      padding: 6px 12px;
       border-radius: 20px;
       cursor: pointer;
-      font-size: clamp(10px, 3vw, 12px);
+      font-size: clamp(11px, 3.2vw, 14px);
+      white-space: nowrap;
+      transition: transform 0.2s ease;
       min-width: auto;
-      height: auto;
-      line-height: 1.2;
     }
-  
+    .filters button:hover {
+      transform: scale(1.05);
+    }
+    .filters button.active,
+    .filters button.active-date {
+      background: #8A2BE2;
+      border-color: #8A2BE2;
+    }
     #date-picker {
       position: absolute;
       opacity: 0;
@@ -114,17 +129,6 @@
       width: 1px;
       height: 1px;
     }
-  
-    .filters button:hover {
-      transform: scale(1.03);
-    }
-  
-    .filters button.active,
-    .filters button.active-date {
-      background: #8A2BE2;
-      border-color: #8A2BE2;
-    }
-  
     #map {
       flex: 1;
       width: 100%;
@@ -132,10 +136,9 @@
       background: linear-gradient(to bottom, #1a002a, #250035);
       min-height: 0;
     }
-  
     .footer {
       background: rgba(10, 0, 20, 0.9);
-      padding: 8px 12px;
+      padding: 8px 16px;
       width: 100%;
       z-index: 1000;
       display: flex;
@@ -150,8 +153,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
       flex-wrap: wrap;
+      margin-bottom: 6px;
     }
     .footer-links a {
       color: white;
@@ -168,17 +172,20 @@
       text-align: center;
       max-width: 800px;
       line-height: 1.3;
+      margin-bottom: 4px;
     }
     .footer-copyright {
       font-size: 11px;
       color: rgba(255, 255, 255, 0.6);
     }
+
+    /* Sidebar, modal, arrows — без изменений */
     .sidebar {
       position: fixed;
-      top: 0;
+      top: 110px;
       right: 0;
-      width: 280px;
-      height: 100%;
+      width: 300px;
+      height: calc(100vh - 110px - 90px);
       background: #1a0a2e;
       z-index: 1500;
       box-shadow: -5px 0 20px rgba(0,0,0,0.6);
@@ -345,30 +352,52 @@
       font-size: 12px;
       font-weight: bold;
     }
+    @media (max-width: 768px) {
+      .header {
+        min-height: 100px;
+        padding: 0 8px;
+      }
+      .header-title {
+        font-size: clamp(20px, 7vw, 30px);
+        white-space: normal;
+      }
+      .filters button {
+        padding: 4px 8px;
+        font-size: 11px;
+      }
+      .stat-left,
+      .stat-right {
+        font-size: clamp(20px, 5vw, 30px);
+      }
+    }
   </style>
 </head>
-
 <body>
   <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0;">
     Победители конкурса Mellstroy с 17 октября 2025 года. Кто выиграл квартиру у Mellstroy? Интерактивная карта всех победителей конкурса Mellstroy.game. Автор проекта — twintlly. Официальный архив победителей: квартиры, деньги, призы. Mellstroy раздаёт квартиры каждый день — смотри, кто победил сегодня.
   </div>
 
   <div class="header">
-    <div class="header-stats">
-      <span id="total-prize"></span>
-      <span id="winner-count" class="stat-right"></span>
+    <div class="header-col stat-left-wrapper">
+      <div class="stat-left" id="total-prize"></div>
     </div>
-    <h1 class="header-title">Победители конкурса MELLSTROY.GAME</h1>
-    <div class="filters">
-      <button class="filter-btn active" data-type="all">Все</button>
-      <button class="filter-btn" data-type="Квартира">🏠 Квартиры</button>
-      <button class="filter-btn" data-type="Деньги">💰 Деньги</button>
-      <button id="reset-date-btn" class="filter-btn active-date">Все дни</button>
-      <button id="open-calendar-btn" class="filter-btn">Выбрать дату</button>
-      <input type="date" id="date-picker" />
-      <button id="show-list-btn">Список</button>
+    <div class="header-col header-title-col">
+      <h1 class="header-title">Победители конкурса MELLSTROY.GAME</h1>
+      <div class="filters">
+        <button class="filter-btn active" data-type="all">Все</button>
+        <button class="filter-btn" data-type="Квартира">🏠 Квартиры</button>
+        <button class="filter-btn" data-type="Деньги">💰 Деньги</button>
+        <button id="reset-date-btn" class="filter-btn active-date">Все дни</button>
+        <button id="open-calendar-btn" class="filter-btn">Выбрать дату</button>
+        <input type="date" id="date-picker" />
+        <button id="show-list-btn">Показать списком</button>
+      </div>
+    </div>
+    <div class="header-col stat-right-wrapper">
+      <div class="stat-right" id="winner-count"></div>
     </div>
   </div>
+
   <div id="map"></div>
 
   <div class="footer">
@@ -411,7 +440,6 @@
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
   <script>
     const map = L.map('map', {
       worldCopyJump: false,
@@ -422,19 +450,19 @@
       maxBoundsViscosity: 1.0,
       minZoom: 3,
       maxZoom: 18
-    }).setView([42.5, 12.5], 3);
-  
+    }).setView([42.5, 12.5], 5);
+
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
       noWrap: true,
       minZoom: 3
     }).addTo(map);
-  
+
     let markers = [];
     let winners = [];
     let currentPrizeFilter = 'all';
     let currentDateFilter = 'all';
-  
+
     function updateStats() {
       let totalPrize = 0;
       let winnerCount = 0;
@@ -448,7 +476,7 @@
       document.getElementById('total-prize').innerText = new Intl.NumberFormat('ru-RU').format(totalPrize) + ' ₽';
       document.getElementById('winner-count').innerText = winnerCount;
     }
-  
+
     fetch('winners.json')
       .then(response => response.json())
       .then(data => {
@@ -457,7 +485,7 @@
         map.on('moveend zoomend', updateArrowHints);
         setTimeout(updateArrowHints, 1000);
       });
-  
+
     function updateArrowHints() {
       const container = document.getElementById('arrow-hints');
       if (!container) return;
@@ -465,7 +493,7 @@
       const mapBounds = map.getBounds();
       const hiddenWinners = winners.filter(w => !mapBounds.contains([w.lat, w.lng]));
       if (hiddenWinners.length === 0) return;
-  
+
       let left = [], right = [], top = [], bottom = [];
       hiddenWinners.forEach(w => {
         if (w.lng < mapBounds.getWest()) left.push(w);
@@ -473,7 +501,7 @@
         if (w.lat > mapBounds.getNorth()) top.push(w);
         if (w.lat < mapBounds.getSouth()) bottom.push(w);
       });
-  
+
       const createArrow = (list, text, styles) => {
         if (!list.length) return;
         const target = list.reduce((a, b) => {
@@ -488,13 +516,13 @@
         el.onclick = () => map.setView([target.lat, target.lng], map.getZoom());
         container.appendChild(el);
       };
-  
+
       createArrow(left, '←', { left: '15px', top: '50%', transform: 'translateY(-50%)' });
       createArrow(right, '→', { right: '15px', top: '50%', transform: 'translateY(-50%)' });
-      createArrow(top, '↑', { top: '95px', left: '50%', transform: 'translateX(-50%)' });
-      createArrow(bottom, '↓', { bottom: '110px', left: '50%', transform: 'translateX(-50%)' });
+      createArrow(top, '↑', { top: '115px', left: '50%', transform: 'translateX(-50%)' }); // ← ИСПРАВЛЕНО
+      createArrow(bottom, '↓', { bottom: '95px', left: '50%', transform: 'translateX(-50%)' });
     }
-  
+
     function renderMarkers() {
       markers.forEach(marker => map.removeLayer(marker));
       markers = [];
@@ -502,7 +530,7 @@
         (currentPrizeFilter === 'all' || w.prizeType === currentPrizeFilter) &&
         (currentDateFilter === 'all' || w.date === currentDateFilter)
       ).sort((a, b) => new Date(a.date) - new Date(b.date));
-  
+
       filtered.forEach((winner, index) => {
         setTimeout(() => {
           const marker = L.marker([winner.lat, winner.lng], {
@@ -524,7 +552,7 @@
       updateStats();
       renderSidebarList();
     }
-  
+
     function renderSidebarList() {
       const list = document.getElementById('winner-list');
       list.innerHTML = '';
@@ -532,7 +560,7 @@
         (currentPrizeFilter === 'all' || w.prizeType === currentPrizeFilter) &&
         (currentDateFilter === 'all' || w.date === currentDateFilter)
       ).sort((a, b) => new Date(a.date) - new Date(b.date));
-  
+
       filtered.forEach((w, i) => {
         const item = document.createElement('div');
         item.className = 'winner-item';
@@ -548,7 +576,7 @@
         list.appendChild(item);
       });
     }
-  
+
     function openModal(winner) {
       document.getElementById('modal-date').innerText = winner.date;
       document.getElementById('modal-name').innerText = winner.name;
@@ -564,18 +592,18 @@
       document.getElementById('modal').style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
-  
+
     document.getElementById('close-modal').onclick = () => {
       const v = document.getElementById('modal-video');
       v.pause(); v.currentTime = 0;
       document.getElementById('modal').style.display = 'none';
       document.body.style.overflow = 'auto';
     };
-  
+
     document.getElementById('modal').onclick = e => {
       if (e.target === document.getElementById('modal')) document.getElementById('close-modal').click();
     };
-  
+
     const prizeButtons = document.querySelectorAll('.filter-btn[data-type]');
     prizeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -585,13 +613,13 @@
         renderMarkers();
       });
     });
-  
+
     const resetDateBtn = document.getElementById('reset-date-btn');
     const openCalendarBtn = document.getElementById('open-calendar-btn');
     const datePicker = document.getElementById('date-picker');
-  
+
     resetDateBtn.classList.add('active-date');
-  
+
     resetDateBtn.addEventListener('click', () => {
       resetDateBtn.classList.add('active-date');
       openCalendarBtn.classList.remove('active-date');
@@ -599,17 +627,43 @@
       currentDateFilter = 'all';
       renderMarkers();
     });
-  
+
     openCalendarBtn.addEventListener('click', () => {
-      // Показываем НАТИВНЫЙ КАЛЕНДАРЬ (на мобильных — полноэкранный выбор)
       if (typeof datePicker.showPicker === 'function') {
         datePicker.showPicker();
       } else {
-        // fallback: фокус + клик (редко нужно)
-        datePicker.click();
+        // Fallback для старых браузеров
+        datePicker.style.position = 'fixed';
+        datePicker.style.opacity = '1';
+        datePicker.style.pointerEvents = 'auto';
+        datePicker.style.top = '50%';
+        datePicker.style.left = '50%';
+        datePicker.style.transform = 'translate(-50%, -50%)';
+        datePicker.style.zIndex = '3000';
+        datePicker.style.width = '80%';
+        datePicker.style.maxWidth = '300px';
+        datePicker.style.height = 'auto';
+        datePicker.style.background = '#1a0a2e';
+        datePicker.style.border = '2px solid #8A2BE2';
+        datePicker.style.borderRadius = '8px';
+        datePicker.style.padding = '8px';
+        datePicker.style.fontSize = '16px';
+        datePicker.focus();
+
+        const hide = () => {
+          setTimeout(() => {
+            datePicker.style.position = 'absolute';
+            datePicker.style.opacity = '0';
+            datePicker.style.pointerEvents = 'none';
+            datePicker.style.width = '1px';
+            datePicker.style.height = '1px';
+          }, 200);
+        };
+        datePicker.addEventListener('change', hide);
+        datePicker.addEventListener('blur', hide);
       }
     });
-  
+
     datePicker.addEventListener('change', e => {
       const d = e.target.value;
       if (d) {
@@ -621,15 +675,11 @@
         renderMarkers();
       }
     });
-  
-    datePicker.addEventListener('blur', () => {
-      setTimeout(() => { datePicker.style.display = 'none'; }, 200);
-    });
-  
+
     document.getElementById('show-list-btn').addEventListener('click', () => {
       document.getElementById('sidebar').classList.toggle('open');
     });
-  
+
     document.getElementById('sidebar-close').addEventListener('click', () => {
       document.getElementById('sidebar').classList.remove('open');
     });
@@ -641,5 +691,4 @@
   "></div>
 </body>
 </html>
-
 
