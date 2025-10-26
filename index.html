@@ -34,9 +34,9 @@
     }
 
     .header {
-      background: #1a002a; /* ← НЕПРОЗРАЧНЫЙ */
+      background: #1a002a;
       padding: 0;
-      min-height: 80px;
+      min-height: 110px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -62,10 +62,10 @@
     }
 
     .header-title {
-      font-size: clamp(22px, 6vw, 32px);
+      font-size: clamp(26px, 6.5vw, 36px);
       font-weight: 800;
       text-align: center;
-      background: linear-gradient(to right, #D02090, #8A2BE2);
+      background: linear-gradient(to right, #e050b0, #a050ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -79,7 +79,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: clamp(18px, 4.5vw, 24px);
+      font-size: clamp(24px, 5.5vw, 32px);
       font-weight: bold;
       color: white;
       white-space: nowrap;
@@ -90,9 +90,10 @@
       transform: translate(-100%, -50%);
     }
     
-    .stat-right {
-      left: 50%;
-      transform: translate(100%, -50%);
+    .stat-right::after {
+      content: " чел";
+      font-size: clamp(18px, 4.5vw, 24px);
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .filters {
@@ -197,14 +198,12 @@
       transition: transform 0.3s ease;
       padding: 20px;
       box-sizing: border-box;
-
-      /* Скрыть скроллбар */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
     .sidebar::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
+      display: none;
     }
 
     .sidebar.open {
@@ -420,7 +419,6 @@
       </div>
     </div>
   
-    <!-- Сумма и количество — ПО ЦЕНТРУ ШАПКИ, НО С ВЫРАВНИВАНИЕМ ОТНОСИТЕЛЬНО ЗАГОЛОВКА -->
     <div id="total-prize" class="stat-left"></div>
     <div id="winner-count" class="stat-right"></div>
   </div>
@@ -561,7 +559,6 @@
         (currentDateFilter === 'all' || w.date === currentDateFilter)
       ).sort((a, b) => new Date(a.date) - new Date(b.date));
   
-      // ← АНИМАЦИЯ ПОЯВЛЕНИЯ МАРКЕРОВ ПО ОЧЕРЕДИ
       filtered.forEach((winner, index) => {
         setTimeout(() => {
           const marker = L.marker([winner.lat, winner.lng], {
@@ -685,5 +682,6 @@
   "></div>
 </body>
 </html>
+
 
 
