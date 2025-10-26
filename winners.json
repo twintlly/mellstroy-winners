@@ -10,10 +10,9 @@
     "prizeType": "Квартира",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvkw5Mh/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/1-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/1-win.MP4",
+    "prizeAmount": 5000000
+  },
   {
     "id": 2,
     "name": "Dashaiyulskaya",
@@ -25,10 +24,9 @@
     "prizeType": "Квартира",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvkNMMX/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/2-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/2-win.MP4",
+    "prizeAmount": 5000000
+  },
   {
     "id": 3,
     "name": "KORTI",
@@ -40,10 +38,9 @@
     "prizeType": "Деньги",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvksEbL/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/3-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/3-win.MP4",
+    "prizeAmount": 1000000
+  },
   {
     "id": 4,
     "name": "нзлд",
@@ -55,10 +52,9 @@
     "prizeType": "Деньги",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvkxLaf/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/4-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/4-win.MP4",
+    "prizeAmount": 1000000
+  },
   {
     "id": 5,
     "name": "суета",
@@ -70,10 +66,9 @@
     "prizeType": "Деньги",
     "isAuthor": false,
     "tiktok": "https://www.tiktok.com/@denisdav?_t=ZN-90jU8rxZYpz&_r=1",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/5-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/5-win.MP4",
+    "prizeAmount": 1000000
+  },
   {
     "id": 6,
     "name": "klimkeef_life",
@@ -85,10 +80,9 @@
     "prizeType": "Деньги",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvkC8pF/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/6-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/6-win.MP4",
+    "prizeAmount": 1000000
+  },
   {
     "id": 7,
     "name": "Анатолий Белкин",
@@ -100,10 +94,9 @@
     "prizeType": "Деньги",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvk9vWn/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/7-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/7-win.MP4",
+    "prizeAmount": 1000000
+  },
   {
     "id": 8,
     "name": "Даша Корейка",
@@ -115,10 +108,9 @@
     "prizeType": "Деньги",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvkynmq/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/8-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/8-win.MP4",
+    "prizeAmount": 1000000
+  },
   {
     "id": 9,
     "name": "РАБОТЯГА С ЗАВОДА",
@@ -130,10 +122,9 @@
     "prizeType": "Деньги",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvkQPLy/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/9-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/9-win.MP4",
+    "prizeAmount": 1000000
+  },
   {
     "id": 10,
     "name": "ЗАХАР",
@@ -145,10 +136,9 @@
     "prizeType": "Квартира",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvkQPLy/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/10-win.mp4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/10-win.mp4",
+    "prizeAmount": 5000000
+  },
   {
     "id": 11,
     "name": "MIKE",
@@ -160,10 +150,9 @@
     "prizeType": "Квартира",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvrXGoU/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/11-win.MP4"
-  }
-  ,
-  
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/11-win.MP4",
+    "prizeAmount": 5000000
+  },
   {
     "id": 12,
     "name": "OMG",
@@ -175,7 +164,8 @@
     "prizeType": "Квартира",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvBsVJk/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/12-win.mp4"
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/12-win.mp4",
+    "prizeAmount": 5000000
   },
   {
     "id": 13,
@@ -188,7 +178,8 @@
     "prizeType": "Квартира",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvSyv6K/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/13-win.mp4"
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/13-win.mp4",
+    "prizeAmount": 5000000
   },
   {
     "id": 14,
@@ -201,8 +192,119 @@
     "prizeType": "Квартира",
     "isAuthor": false,
     "tiktok": "https://vm.tiktok.com/ZNdvSSxMr/",
-    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/14-win.mp4"
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/14-win.mp4",
+    "prizeAmount": 5000000
+  },
+  {
+    "id": 15,
+    "name": "happy hous",
+    "date": "2025-10-21",
+    "lat": 69.0000,
+    "lng": 33.0000,
+    "avatar": "avatars/15.jpg",
+    "description": "Бабушка с внучкой рассказали о своем плохом материальном положении",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdcUjECB/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/15-win.mp4",
+    "prizeAmount": 5000000
+  },
+  {
+    "id": 16,
+    "name": "AMP",
+    "date": "2025-10-21",
+    "lat": 43.0000,
+    "lng": 42.0000,
+    "avatar": "avatars/16.jpg",
+    "description": "Ребята прическами сделали надпись Mellstroy.game",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdcDEwkC/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/16-win.mp4",
+    "prizeAmount": 5000000
+  },
+  {
+    "id": 17,
+    "name": "Мамука необыкновенный!",
+    "date": "2025-10-21",
+    "lat": 52.0000,
+    "lng": 104.0000,
+    "avatar": "avatars/17.jpg",
+    "description": "Пара закрасила табличку с названием поселка и на писали вместо него Mellstroy.game, затем девушка постриглась налысо",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdcUFwEt/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/17-win.mp4",
+    "prizeAmount": 5000000
+  },
+  {
+    "id": 18,
+    "name": "Инцидент с мужем и дочерью",
+    "date": "2025-10-21",
+    "lat": 59.0000,
+    "lng": 28.0000,
+    "avatar": "avatars/18.jpg",
+    "description": "Сняли видео о тяжелой жизненной ситуации. Отзовись, победитель, я не смогла найти ваш аккаунт в тт",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/18-win.mp4",
+    "prizeAmount": 1000000
+  },
+  {
+    "id": 19,
+    "name": "Eduwoes",
+    "date": "2025-10-21",
+    "lat": 47.0000,
+    "lng": 39.0000,
+    "avatar": "avatars/19.jpg",
+    "description": "Нарисовал три рисунка одновременно",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdcyjU3T/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/19-win.mp4",
+    "prizeAmount": 1000000
+  },
+  {
+    "id": 20,
+    "name": "Deletsss",
+    "date": "2025-10-21",
+    "lat": 55.0000,
+    "lng": 87.0000,
+    "avatar": "avatars/20.jpg",
+    "description": "Jetcar, время платить по счетам",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdcy1goG/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/20-win.mp4",
+    "prizeAmount": 1000000
+  },
+  {
+    "id": 21,
+    "name": "Шахтер",
+    "date": "2025-10-21",
+    "lat": 50.0000,
+    "lng": 120.0000,
+    "avatar": "avatars/21.jpg",
+    "description": "Шахтер написал на комбайне Mellstroy.game, теперь он работает под именем проекта. Отзовись, победитель, я не смогла найти ваш аккаунт в тт",
+    "prizeType": "Деньги",
+    "isAuthor": false,
+    "tiktok": "",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/21-win.mp4",
+    "prizeAmount": 1000000
+  },
+  {
+    "id": 22,
+    "name": "Дедушка Коля",
+    "date": "2025-10-22",
+    "lat": 53.0000,
+    "lng": 34.0000,
+    "avatar": "avatars/22.jpg",
+    "description": "Сняли видео о тяжелой жизненной ситуации",
+    "prizeType": "Квартира",
+    "isAuthor": false,
+    "tiktok": "https://vm.tiktok.com/ZNdcy176U/",
+    "videoUrl": "https://s3.twcstorage.ru/88ec120d-mellstroy-winners/videos/22-win.mp4",
+    "prizeAmount": 5000000
   }
-
 ]
-
