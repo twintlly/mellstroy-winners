@@ -24,41 +24,56 @@
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
     body {
       background: linear-gradient(to bottom, #2A0040, #3B0050);
       color: white;
-      position: relative;
+      display: flex;
+      flex-direction: column;
       height: 100vh;
       overflow: hidden;
+      margin: 0;
+      padding: 0;
     }
+  
     .header {
       background: #1a002a;
-      padding: 0 8px;
-      min-height: 100px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 8px 10px;
       width: 100%;
-      box-sizing: border-box;
-    }
-    .header-col {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 0;
-    }
-    .header-title-col {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 4px;
-      max-width: 100%;
-      overflow: hidden;
+      gap: 6px;
+      z-index: 100;
+      min-height: 110px;
+      box-sizing: border-box;
     }
+  
+    .header-stats {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: clamp(16px, 4.5vw, 24px);
+      font-weight: bold;
+      background: linear-gradient(to right, #ffaddf, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+  
+    .header-stats .stat-right::after {
+      content: " чел";
+      font-size: 0.7em;
+      color: rgba(255, 255, 255, 0.85);
+      margin-left: 4px;
+    }
+  
     .header-title {
-      font-size: clamp(18px, 6vw, 32px);
+      font-size: clamp(18px, 6vw, 28px);
       font-weight: 800;
       text-align: center;
       background: linear-gradient(to right, #e050b0, #a050ff);
@@ -67,91 +82,68 @@
       background-clip: text;
       color: transparent;
       margin: 0;
-      line-height: 1.1;
-      /* УБРАНО white-space: nowrap */
+      line-height: 1.2;
     }
-    .stat-left,
-    .stat-right {
-      font-size: clamp(18px, 5vw, 30px);
-      font-weight: bold;
-      /* УБРАНО white-space: nowrap */
-      background: linear-gradient(to right, #ffaddf, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      text-align: center;
-    }
-    .stat-right::after {
-      content: " чел";
-      font-size: clamp(14px, 4vw, 22px);
-      color: rgba(255, 255, 255, 0.85);
-      margin-left: 4px;
-    }
+  
     .filters {
       display: flex;
       gap: 4px;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 0;
-      margin: 6px 0 0;
-      max-width: 100%;
+      width: 100%;
+      margin-top: 4px;
     }
+  
     .filters button {
       background: linear-gradient(to bottom, #4B0082, #800080);
       color: white;
       border: 2px solid #9932CC;
-      padding: 5px 10px;
+      padding: 4px 8px;
       border-radius: 20px;
       cursor: pointer;
-      font-size: clamp(10px, 3vw, 13px);
-      white-space: nowrap;
-      transition: transform 0.2s ease;
+      font-size: clamp(10px, 3vw, 12px);
       min-width: auto;
+      height: auto;
+      line-height: 1.2;
     }
+  
+    #date-picker {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      width: 1px;
+      height: 1px;
+    }
+  
     .filters button:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
+  
     .filters button.active,
     .filters button.active-date {
       background: #8A2BE2;
       border-color: #8A2BE2;
     }
-    #date-picker {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3000;
-      width: 80%;
-      max-width: 300px;
-      padding: 10px;
-      background: #1a0a2e;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      display: none;
-    }
+  
     #map {
-      position: absolute;
-      top: 100px;
-      bottom: 110px;
+      flex: 1;
       width: 100%;
       z-index: 10;
       background: linear-gradient(to bottom, #1a002a, #250035);
+      min-height: 0;
     }
+  
     .footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
       background: rgba(10, 0, 20, 0.9);
-      height: 110px;
+      padding: 8px 12px;
+      width: 100%;
       z-index: 1000;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 0 12px;
+      gap: 4px;
+      min-height: 90px;
       box-sizing: border-box;
     }
     .footer-links {
@@ -159,7 +151,6 @@
       justify-content: center;
       align-items: center;
       gap: 16px;
-      margin-bottom: 6px;
       flex-wrap: wrap;
     }
     .footer-links a {
@@ -177,7 +168,6 @@
       text-align: center;
       max-width: 800px;
       line-height: 1.3;
-      margin-bottom: 4px;
     }
     .footer-copyright {
       font-size: 11px;
@@ -185,10 +175,10 @@
     }
     .sidebar {
       position: fixed;
-      top: 100px;
+      top: 0;
       right: 0;
-      width: 300px;
-      height: calc(100vh - 100px - 110px);
+      width: 280px;
+      height: 100%;
       background: #1a0a2e;
       z-index: 1500;
       box-shadow: -5px 0 20px rgba(0,0,0,0.6);
@@ -200,12 +190,8 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
-    .sidebar::-webkit-scrollbar {
-      display: none;
-    }
-    .sidebar.open {
-      transform: translateX(0);
-    }
+    .sidebar::-webkit-scrollbar { display: none; }
+    .sidebar.open { transform: translateX(0); }
     .sidebar-header {
       display: flex;
       justify-content: space-between;
@@ -241,10 +227,7 @@
     .winner-item:hover {
       background: rgba(138, 43, 226, 0.2);
     }
-    .winner-number {
-      font-weight: bold;
-      color: #FFD700;
-    }
+    .winner-number { font-weight: bold; color: #FFD700; }
     .winner-avatar {
       width: 40px;
       height: 40px;
@@ -278,7 +261,7 @@
       z-index: 2000;
       justify-content: center;
       align-items: center;
-      padding: 40px 20px;
+      padding: 20px;
       box-sizing: border-box;
     }
     .modal-content {
@@ -362,20 +345,6 @@
       font-size: 12px;
       font-weight: bold;
     }
-    @media (max-width: 768px) {
-      .header {
-        min-height: 90px;
-        padding: 0 6px;
-      }
-      .filters {
-        gap: 3px;
-        margin-top: 4px;
-      }
-      .filters button {
-        padding: 4px 8px;
-        font-size: 10px;
-      }
-    }
   </style>
 </head>
 
@@ -385,20 +354,20 @@
   </div>
 
   <div class="header">
-    <div class="header-col stat-left" id="total-prize"></div>
-    <div class="header-col header-title-col">
-      <h1 class="header-title">Победители конкурса MELLSTROY.GAME</h1>
-      <div class="filters">
-        <button class="filter-btn active" data-type="all">Все</button>
-        <button class="filter-btn" data-type="Квартира">🏠 Квартиры</button>
-        <button class="filter-btn" data-type="Деньги">💰 Деньги</button>
-        <button id="reset-date-btn" class="filter-btn active-date">Все дни</button>
-        <input type="date" id="date-picker" />
-        <button id="open-calendar-btn" class="filter-btn">Выбрать дату</button>
-        <button id="show-list-btn">Показать списком</button>
-      </div>
+    <div class="header-stats">
+      <span id="total-prize"></span>
+      <span id="winner-count" class="stat-right"></span>
     </div>
-    <div class="header-col stat-right" id="winner-count"></div>
+    <h1 class="header-title">Победители конкурса MELLSTROY.GAME</h1>
+    <div class="filters">
+      <button class="filter-btn active" data-type="all">Все</button>
+      <button class="filter-btn" data-type="Квартира">🏠 Квартиры</button>
+      <button class="filter-btn" data-type="Деньги">💰 Деньги</button>
+      <button id="reset-date-btn" class="filter-btn active-date">Все дни</button>
+      <button id="open-calendar-btn" class="filter-btn">Выбрать дату</button>
+      <input type="date" id="date-picker" />
+      <button id="show-list-btn">Список</button>
+    </div>
   </div>
   <div id="map"></div>
 
@@ -607,7 +576,6 @@
       if (e.target === document.getElementById('modal')) document.getElementById('close-modal').click();
     };
   
-    // --- Исправленная логика кнопок фильтрации ---
     const prizeButtons = document.querySelectorAll('.filter-btn[data-type]');
     prizeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -622,7 +590,6 @@
     const openCalendarBtn = document.getElementById('open-calendar-btn');
     const datePicker = document.getElementById('date-picker');
   
-    // Активна по умолчанию
     resetDateBtn.classList.add('active-date');
   
     resetDateBtn.addEventListener('click', () => {
@@ -634,8 +601,13 @@
     });
   
     openCalendarBtn.addEventListener('click', () => {
-      datePicker.style.display = 'block';
-      datePicker.focus();
+      // Показываем НАТИВНЫЙ КАЛЕНДАРЬ (на мобильных — полноэкранный выбор)
+      if (typeof datePicker.showPicker === 'function') {
+        datePicker.showPicker();
+      } else {
+        // fallback: фокус + клик (редко нужно)
+        datePicker.click();
+      }
     });
   
     datePicker.addEventListener('change', e => {
@@ -648,7 +620,6 @@
         currentDateFilter = d;
         renderMarkers();
       }
-      datePicker.style.display = 'none';
     });
   
     datePicker.addEventListener('blur', () => {
@@ -670,4 +641,5 @@
   "></div>
 </body>
 </html>
+
 
