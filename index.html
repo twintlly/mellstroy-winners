@@ -45,7 +45,6 @@
     }
     
     .header-col {
-      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -53,18 +52,21 @@
     }
     
     .header-title-col {
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px; /* ← уменьшено расстояние до кнопок */
+      gap: 6px;
     }
     
     .header-title {
       font-size: clamp(24px, 6.5vw, 34px);
       font-weight: 800;
       text-align: center;
-      background: linear-gradient(to right, #e050b0, #a050ff); /* ← светлее фиолетовый */
+      background: linear-gradient(to right, #e050b0, #a050ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -76,14 +78,17 @@
     
     .stat-left,
     .stat-right {
+      flex: 0 0 auto;
+      width: auto;
       font-size: clamp(24px, 5.8vw, 34px);
       font-weight: bold;
       white-space: nowrap;
-      background: linear-gradient(to right, #ffaddf, #ffffff); /* ← нежно-розовый → белый */
+      background: linear-gradient(to right, #ffaddf, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
+      padding: 0 12px;
     }
     
     .stat-right::after {
@@ -127,7 +132,7 @@
       bottom: 110px;
       width: 100%;
       z-index: 10;
-      background: linear-gradient(to bottom, #2A0040, #3B0050);
+      background: linear-gradient(to bottom, #1a002a, #250035);
     }
 
     .footer {
@@ -181,10 +186,10 @@
 
     .sidebar {
       position: fixed;
-      top: calc(80px + 16px);
+      top: 100px;
       right: 0;
       width: 300px;
-      height: calc(100vh - 80px - 110px - 32px);
+      height: calc(100vh - 100px - 110px);
       background: #1a0a2e;
       z-index: 1500;
       box-shadow: -5px 0 20px rgba(0,0,0,0.6);
@@ -675,6 +680,7 @@
   "></div>
 </body>
 </html>
+
 
 
 
