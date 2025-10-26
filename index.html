@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- SEO -->
   <meta name="description" content="Смотри всех победителей вирусного конкурса #MellstroyGame! Кому Меллстрой уже подарил квартиры и миллионы. Полная интерактивная карта, отчёты и видео TikTok участников.">
   <meta name="keywords" content="меллстрой, mellstroy, mellstroygame, конкурс меллстроя, розыгрыш квартир, тикток челлендж, tiktok конкурс, победители mellstroy, mellgift, квартиры от меллстроя, челлендж 2025, tiktok хайп, победители конкурса, tiktok trend, mellstroy apartment challenge">
   <link rel="canonical" href="https://mellstroy-winners.ru/">
-  <!-- Верификации -->
   <meta name="google-site-verification" content="mJUSSsY6AW1xlZ6NC7QGPlmTCF9OL4dwZsYOIhs6TeI" />
   <meta name="yandex-verification" content="0b77076035bf2931" />
   <title>Победители конкурса Mellstroy.game</title>
@@ -29,7 +27,6 @@
       display: flex;
       flex-direction: column;
     }
-
     .header {
       background: #1a002a;
       padding: 0 16px;
@@ -44,7 +41,6 @@
       z-index: 100;
       gap: 6px;
     }
-
     .header-stats-mobile {
       display: flex;
       justify-content: space-between;
@@ -64,14 +60,12 @@
       color: rgba(255, 255, 255, 0.85);
       margin-left: 4px;
     }
-
     .header-center {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
-
     .header-title {
       font-size: clamp(24px, 6vw, 36px);
       font-weight: 800;
@@ -85,7 +79,6 @@
       line-height: 1.2;
       white-space: nowrap;
     }
-
     .filters {
       display: flex;
       gap: 6px;
@@ -93,7 +86,6 @@
       justify-content: center;
       width: 100%;
     }
-
     .filters button {
       background: linear-gradient(to bottom, #4B0082, #800080);
       color: white;
@@ -106,17 +98,14 @@
       transition: transform 0.2s ease;
       min-width: auto;
     }
-
     .filters button:hover {
       transform: scale(1.05);
     }
-
     .filters button.active,
     .filters button.active-date {
       background: #8A2BE2;
       border-color: #8A2BE2;
     }
-
     #date-picker {
       position: absolute;
       opacity: 0;
@@ -124,7 +113,6 @@
       width: 1px;
       height: 1px;
     }
-
     .header-stats-pc {
       position: absolute;
       top: 12px;
@@ -147,7 +135,6 @@
       color: rgba(255, 255, 255, 0.85);
       margin-left: 4px;
     }
-
     #map {
       flex: 1;
       width: 100%;
@@ -155,7 +142,6 @@
       background: linear-gradient(to bottom, #1a002a, #250035);
       min-height: 0;
     }
-
     .footer {
       background: rgba(10, 0, 20, 0.9);
       padding: 8px 16px;
@@ -169,7 +155,6 @@
       min-height: 90px;
       box-sizing: border-box;
     }
-
     .footer-links {
       display: flex;
       justify-content: center;
@@ -178,18 +163,15 @@
       flex-wrap: wrap;
       margin-bottom: 6px;
     }
-
     .footer-links a {
       color: white;
       text-decoration: none;
       font-size: clamp(12px, 3.5vw, 16px);
       transition: opacity 0.2s;
     }
-
     .footer-links a:hover {
       opacity: 0.8;
     }
-
     .footer-disclaimer {
       font-size: 9px;
       color: rgba(255, 255, 255, 0.3);
@@ -198,12 +180,10 @@
       line-height: 1.3;
       margin-bottom: 4px;
     }
-
     .footer-copyright {
       font-size: 11px;
       color: rgba(255, 255, 255, 0.6);
     }
-
     .sidebar {
       position: fixed;
       top: 110px;
@@ -376,7 +356,6 @@
       font-size: 12px;
       font-weight: bold;
     }
-
     @media (min-width: 769px) {
       .header {
         flex-direction: row;
@@ -390,7 +369,6 @@
       .header-center { gap: 12px; }
       .header-stats-pc { display: flex !important; }
     }
-
     @media (max-width: 768px) {
       .header {
         min-height: 100px;
@@ -492,7 +470,7 @@
       maxBoundsViscosity: 1.0,
       minZoom: 3,
       maxZoom: 18
-    }).setView([42.5, 12.5], 3);
+    }).setView([42.5, 12.5], 5);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
