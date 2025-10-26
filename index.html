@@ -36,74 +36,62 @@
     .header {
       background: #1a002a;
       padding: 0;
-      min-height: 110px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .header-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      z-index: 2;
-    }
-
-    .header-stats {
+      min-height: 110px; /* ← выше и визуально "шире" */
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      position: relative;
       width: 100%;
-      font-size: clamp(18px, 5vw, 24px);
-      font-weight: bold;
-      color: white;
-      white-space: nowrap;
+      padding-left: 20px;
+      padding-right: 20px;
+      box-sizing: border-box;
     }
-
+    
     .header-title {
       font-size: clamp(26px, 6.5vw, 36px);
       font-weight: 800;
       text-align: center;
-      background: linear-gradient(to right, #e050b0, #a050ff);
+      background: linear-gradient(to right, #e050b0, #a050ff); /* ← светлее фиолетовый */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
       margin: 0;
       line-height: 1.1;
+      white-space: nowrap;
+      flex: 1;
+      text-align: center;
     }
     
     .stat-left,
     .stat-right {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: clamp(24px, 5.5vw, 32px);
+      font-size: clamp(24px, 5.8vw, 34px); /* ← крупнее */
       font-weight: bold;
       color: white;
       white-space: nowrap;
-    }
-    
-    .stat-left {
-      left: 50%;
-      transform: translate(-100%, -50%);
+      min-width: fit-content;
     }
     
     .stat-right::after {
       content: " чел";
-      font-size: clamp(18px, 4.5vw, 24px);
-      color: rgba(255, 255, 255, 0.8);
+      font-size: clamp(18px, 4.5vw, 26px);
+      color: rgba(255, 255, 255, 0.85);
+      margin-left: 4px;
     }
-
+    
+    .filters-container {
+      padding: 8px 20px 0;
+      background: #1a002a;
+      z-index: 20;
+    }
+    
     .filters {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 6px;
     }
-
+    
     .filters button {
       background: linear-gradient(to bottom, #4B0082, #800080);
       color: white;
@@ -115,11 +103,11 @@
       white-space: nowrap;
       transition: transform 0.2s ease;
     }
-
+    
     .filters button:hover {
       transform: scale(1.05);
     }
-
+    
     .filters button.active {
       background: #8A2BE2;
       border-color: #8A2BE2;
@@ -127,7 +115,7 @@
 
     #map {
       position: absolute;
-      top: 80px;
+      top: calc(110px + 38px);
       bottom: 110px;
       width: 100%;
       z-index: 10;
@@ -183,7 +171,6 @@
       color: rgba(255, 255, 255, 0.6);
     }
 
-    /* Скрытие скроллбара */
     .sidebar {
       position: fixed;
       top: calc(80px + 16px);
@@ -406,23 +393,21 @@
   </div>
 
   <div class="header">
-    <div class="header-content">
-      <h1 class="header-title">Победители конкурса MELLSTROY.GAME</h1>
-      <div class="filters">
-        <button class="filter-btn active" data-type="all">Все</button>
-        <button class="filter-btn" data-type="Квартира">🏠 Квартиры</button>
-        <button class="filter-btn" data-type="Деньги">💰 Деньги</button>
-        <button id="reset-date-btn" class="filter-btn active-date">Все дни</button>
-        <input type="date" id="date-picker" style="display: none;" />
-        <button id="open-calendar-btn" class="filter-btn">Выбрать дату</button>
-        <button id="show-list-btn">Показать списком</button>
-      </div>
-    </div>
-  
-    <div id="total-prize" class="stat-left"></div>
-    <div id="winner-count" class="stat-right"></div>
+    <div class="stat-left" id="total-prize"></div>
+    <h1 class="header-title">Победители конкурса MELLSTROY.GAME</h1>
+    <div class="stat-right" id="winner-count"></div>
   </div>
-
+  <div class="filters-container">
+    <div class="filters">
+      <button class="filter-btn active" data-type="all">Все</button>
+      <button class="filter-btn" data-type="Квартира">🏠 Квартиры</button>
+      <button class="filter-btn" data-type="Деньги">💰 Деньги</button>
+      <button id="reset-date-btn" class="filter-btn active-date">Все дни</button>
+      <input type="date" id="date-picker" style="display: none;" />
+      <button id="open-calendar-btn" class="filter-btn">Выбрать дату</button>
+      <button id="show-list-btn">Показать списком</button>
+    </div>
+  </div>
   <div id="map"></div>
 
   <div class="footer">
@@ -682,6 +667,7 @@
   "></div>
 </body>
 </html>
+
 
 
 
