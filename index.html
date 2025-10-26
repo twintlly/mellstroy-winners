@@ -19,7 +19,8 @@
     }
 
     body {
-      background: #000;
+      /* Градиентный фон */
+      background: linear-gradient(to bottom, #4B0082, #800080);
       color: white;
       margin: 0;
       padding: 0;
@@ -30,20 +31,53 @@
     }
 
     .header {
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+      /* Убрана нижняя граница, чтобы исчезла полоска */
       background: #111;
       padding: 12px 16px;
       z-index: 1000;
       position: relative;
       min-height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
-    .header-inner {
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-right: auto;
+    }
+    
+    .header-center {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
+      flex: 1;
+    }
+    
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+    
+    .total-prize {
+      font-size: 16px;
+      font-weight: bold;
+      color: #FFD700; /* Желтый для выделения */
+      white-space: nowrap;
+    }
+    
+    .winner-count {
+      font-size: 16px;
+      font-weight: bold;
+      color: #FFD700; /* Желтый для выделения */
+      white-space: nowrap;
     }
     
     .header-title {
@@ -54,6 +88,12 @@
       flex: 1 1 100%;
       order: -1; /* заголовок всегда сверху */
       margin-bottom: 8px;
+      /* Градиентный текст */
+      background: linear-gradient(to right, #FF00FF, #BA55D3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
     
     .filters {
@@ -64,22 +104,27 @@
       margin: 0;
     }
     .filters button {
-      background: #333;
+      background: linear-gradient(to bottom, #4B0082, #800080);
       color: white;
-      border: none;
+      border: 2px solid #9932CC; /* Контур */
       padding: 6px 14px;
       border-radius: 20px;
       cursor: pointer;
       font-size: 14px;
       white-space: nowrap;
+      transition: transform 0.2s ease, background 0.2s ease; /* Анимация при наведении */
+    }
+    .filters button:hover {
+      transform: scale(1.05); /* Увеличение при наведении */
     }
     .filters button.active {
       background: #8A2BE2;
+      border-color: #8A2BE2;
     }
 
     #map {
       position: absolute;
-      top: 120px;
+      top: 60px; /* Смещено вниз, чтобы не перекрывать шапку */
       bottom: 60px;
       width: 100%;
       z-index: 10;
@@ -200,18 +245,23 @@
     }
 
     #open-calendar-btn {
-      background: #333;
+      background: linear-gradient(to bottom, #4B0082, #800080);
       color: white;
-      border: none;
+      border: 2px solid #9932CC;
       padding: 5px 12px;
       border-radius: 16px;
       cursor: pointer;
       font-size: 13px;
       white-space: nowrap;
+      transition: transform 0.2s ease;
+    }
+    #open-calendar-btn:hover {
+      transform: scale(1.05);
     }
 
     #reset-date-btn.active-date {
       background: #8A2BE2;
+      border-color: #8A2BE2;
     }
 
     .close-btn {
@@ -268,6 +318,112 @@
       font-weight: bold;
     }
     
+    /* Боковая панель со списком */
+    .sidebar {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 300px;
+      height: calc(100vh - 120px);
+      background: #222;
+      z-index: 1500;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .sidebar-close {
+      background: #8A2BE2;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .winner-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .winner-item:hover {
+      background: rgba(138, 43, 226, 0.2);
+    }
+    
+    .winner-number {
+      font-weight: bold;
+      color: #FFD700;
+    }
+    
+    .winner-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #8A2BE2;
+    }
+    
+    .winner-info {
+      flex: 1;
+      overflow: hidden;
+    }
+    
+    .winner-name {
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .winner-prize {
+      font-size: 0.9em;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    /* Кнопка "Показать списком" */
+    #show-list-btn {
+      background: linear-gradient(to bottom, #4B0082, #800080);
+      color: white;
+      border: 2px solid #9932CC;
+      padding: 5px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 13px;
+      white-space: nowrap;
+      transition: transform 0.2s ease;
+    }
+    #show-list-btn:hover {
+      transform: scale(1.05);
+    }
+
     @media (max-width: 768px) {
       .header-title {
         font-size: 18px;
@@ -283,6 +439,10 @@
         font-size: 16px;
         gap: 20px;
       }
+      
+      .sidebar {
+        width: 250px;
+      }
     }
   </style>
 </head>
@@ -293,7 +453,11 @@
   </div>
 
   <div class="header">
-    <div class="header-inner">
+    <div class="header-left">
+      <!-- Общая сумма выигрыша -->
+      <div class="total-prize" id="total-prize">0 ₽</div>
+    </div>
+    <div class="header-center">
       <h1 class="header-title">Победители конкурса MELLSTROY.GAME</h1>
       <div class="filters">
         <button class="filter-btn active" data-type="all">Все</button>
@@ -303,6 +467,12 @@
         <input type="date" id="date-picker" style="display: none;" />
         <button id="open-calendar-btn" class="filter-btn">Выбрать дату</button>
       </div>
+    </div>
+    <div class="header-right">
+      <!-- Количество победителей -->
+      <div class="winner-count" id="winner-count">0</div>
+      <!-- Кнопка "Показать списком" -->
+      <button id="show-list-btn">Показать списком</button>
     </div>
   </div>
 
@@ -318,6 +488,17 @@
     </div>
     <div class="footer-copyright">
       © 2025 twintlly. Все права защищены.
+    </div>
+  </div>
+
+  <!-- Боковая панель со списком -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>Список победителей</h3>
+      <button class="sidebar-close" id="sidebar-close">×</button>
+    </div>
+    <div id="winner-list">
+      <!-- Список будет заполняться скриптом -->
     </div>
   </div>
 
@@ -365,11 +546,30 @@
     let currentPrizeFilter = 'all';
     let currentDateFilter = 'all';
 
+    // Функция для расчета общей суммы и количества
+    function updateStats() {
+      let totalPrize = 0;
+      let winnerCount = 0;
+
+      winners.forEach(winner => {
+        if (currentPrizeFilter === 'all' || winner.prizeType === currentPrizeFilter) {
+          if (currentDateFilter === 'all' || winner.date === currentDateFilter) {
+            totalPrize += winner.prizeAmount || 0;
+            winnerCount++;
+          }
+        }
+      });
+
+      document.getElementById('total-prize').innerText = new Intl.NumberFormat('ru-RU').format(totalPrize) + ' ₽';
+      document.getElementById('winner-count').innerText = winnerCount;
+    }
+
     fetch('winners.json')
       .then(response => response.json())
       .then(data => {
         winners = data;
         renderMarkers();
+        updateStats(); // Обновляем статистику после загрузки данных
         map.on('moveend zoomend', updateArrowHints);
         setTimeout(updateArrowHints, 1000);
       });
@@ -490,6 +690,46 @@
           markers.push(marker);
         }, index * 200);
       });
+      updateStats(); // Обновляем статистику после рендеринга маркеров
+      renderSidebarList(); // Обновляем список в боковой панели
+    }
+
+    function renderSidebarList() {
+      const listContainer = document.getElementById('winner-list');
+      listContainer.innerHTML = '';
+
+      let filtered = winners;
+
+      if (currentPrizeFilter !== 'all') {
+        filtered = filtered.filter(w => w.prizeType === currentPrizeFilter);
+      }
+
+      if (currentDateFilter !== 'all') {
+        filtered = filtered.filter(w => w.date === currentDateFilter);
+      }
+
+      filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      filtered.forEach((winner, index) => {
+        const item = document.createElement('div');
+        item.className = 'winner-item';
+        item.dataset.id = winner.id;
+        
+        item.innerHTML = `
+          <span class="winner-number">${index + 1}</span>
+          <img class="winner-avatar" src="${winner.avatar}" alt="${winner.name}">
+          <div class="winner-info">
+            <div class="winner-name">${winner.name}</div>
+            <div class="winner-prize">${winner.prizeType}${winner.prizeType === 'Деньги' ? ' - 1 млн ₽' : ''}</div>
+          </div>
+        `;
+        
+        item.addEventListener('click', () => {
+          openModal(winner);
+        });
+        
+        listContainer.appendChild(item);
+      });
     }
 
     function openModal(winner) {
@@ -497,7 +737,14 @@
       document.getElementById('modal-name').innerText = winner.name;
       document.getElementById('modal-avatar').src = winner.avatar;
       document.getElementById('modal-description').innerText = winner.description;
-      document.getElementById('modal-prize').innerText = winner.prizeType;
+      
+      // Обновляем текст приза в модальном окне
+      const prizeText = winner.prizeType;
+      if (winner.prizeType === 'Деньги') {
+        document.getElementById('modal-prize').innerText = prizeText + ' - 1 млн ₽';
+      } else {
+        document.getElementById('modal-prize').innerText = prizeText;
+      }
 
       const authorText = document.getElementById('modal-author');
       if (winner.isAuthor) {
@@ -568,6 +815,16 @@
         renderMarkers();
       }
     });
+
+    // Обработчик для кнопки "Показать списком"
+    document.getElementById('show-list-btn').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+    });
+
+    // Обработчик для закрытия боковой панели
+    document.getElementById('sidebar-close').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.remove('open');
+    });
   </script>
   <div id="arrow-hints" style="
     position: absolute;
@@ -581,15 +838,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
