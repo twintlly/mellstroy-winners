@@ -42,12 +42,11 @@
       gap: 6px;
     }
     .header-stats-mobile {
-      display: flex;
+      display: none;
       justify-content: space-between;
       width: 100%;
       font-size: clamp(20px, 5.5vw, 30px);
       font-weight: bold;
-      display: none;
     }
     
     .header-stats-mobile .stat-left,
@@ -56,7 +55,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      color: transparent;
+      color: transparent !important;
     }
     
     .header-stats-mobile .stat-right::after {
@@ -393,7 +392,6 @@
         min-height: 110px;
         gap: 6px;
       }
-      .header-stats-mobile { display: none !important; }
       .header-center { gap: 12px; }
       .header-stats-pc { display: flex !important; }
     }
@@ -444,6 +442,7 @@
         <div class="stat-right" id="winner-count-pc"></div>
       </div>
     </div>
+  </div>
   <div id="map"></div>
   <div class="footer">
     <div class="footer-links">
@@ -711,5 +710,6 @@
   "></div>
 </body>
 </html>
+
 
 
