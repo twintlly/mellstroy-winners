@@ -47,13 +47,18 @@
       width: 100%;
       font-size: clamp(20px, 5.5vw, 30px);
       font-weight: bold;
+      display: none;
+    }
+    
+    .header-stats-mobile .stat-left,
+    .header-stats-mobile .stat-right {
       background: linear-gradient(to right, #ffaddf, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-      display: none;
     }
+    
     .header-stats-mobile .stat-right::after {
       content: " чел";
       font-size: 0.75em;
@@ -119,17 +124,39 @@
       left: 0;
       right: 0;
       display: none;
-      justify-content: space-between;
       padding: 0 24px;
       font-size: clamp(24px, 5.8vw, 34px);
       font-weight: bold;
+      pointer-events: none;
+    }
+    .header-stats-pc-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .header-stats-pc .stat-left,
+    .header-stats-pc .stat-right {
       background: linear-gradient(to right, #ffaddf, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-      pointer-events: none;
+      flex: 1;
+      text-align: center;
     }
+    
+    .header-stats-pc .stat-left {
+      text-align: left;
+    }
+    
+    .header-stats-pc .stat-right {
+      text-align: right;
+    }
+    
     .header-stats-pc .stat-right::after {
       content: " чел";
       font-size: clamp(18px, 4.5vw, 26px);
@@ -411,10 +438,12 @@
       </div>
     </div>
     <div class="header-stats-pc">
-      <div class="stat-left" id="total-prize-pc"></div>
-      <div class="stat-right" id="winner-count-pc"></div>
+      <div class="header-stats-pc-inner">
+        <div class="stat-left" id="total-prize-pc"></div>
+        <div></div>
+        <div class="stat-right" id="winner-count-pc"></div>
+      </div>
     </div>
-  </div>
   <div id="map"></div>
   <div class="footer">
     <div class="footer-links">
@@ -682,4 +711,5 @@
   "></div>
 </body>
 </html>
+
 
