@@ -128,6 +128,7 @@
       font-weight: bold;
       pointer-events: none;
     }
+    
     .header-stats-pc-inner {
       display: flex;
       justify-content: space-between;
@@ -135,25 +136,30 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+      gap: 20px; /* добавляем отступ между блоками */
     }
     
     .header-stats-pc .stat-left,
     .header-stats-pc .stat-right {
-      background: linear-gradient(to right, #ffaddf, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      flex: 1;
+      background: linear-gradient(to right, #ffaddf, #ffffff) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      color: transparent !important;
       text-align: center;
+      min-width: 120px;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     
     .header-stats-pc .stat-left {
-      text-align: left;
+      text-align: right;
     }
     
     .header-stats-pc .stat-right {
-      text-align: right;
+      text-align: left;
     }
     
     .header-stats-pc .stat-right::after {
@@ -556,7 +562,8 @@
       };
       createArrow(left, '←', { left: '15px', top: '50%', transform: 'translateY(-50%)' });
       createArrow(right, '→', { right: '15px', top: '50%', transform: 'translateY(-50%)' });
-      createArrow(top, '↑', { top: '115px', left: '50%', transform: 'translateX(-50%)' });
+      const topOffset = window.innerWidth <= 768 ? '100px' : '115px';
+      createArrow(top, '↑', { top: topOffset, left: '50%', transform: 'translateX(-50%)' });
       createArrow(bottom, '↓', { bottom: '135px', left: '50%', transform: 'translateX(-50%)' });
     }
     function renderMarkers() {
@@ -710,6 +717,7 @@
   "></div>
 </body>
 </html>
+
 
 
 
